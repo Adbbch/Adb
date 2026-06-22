@@ -1,0 +1,962 @@
+/* ============================================
+   ADB — style.css
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600&display=swap');
+
+:root{
+  --void:#000000;
+  --gunmetal:#0d0d10;
+  --chrome-1:#e9e9ec;
+  --chrome-2:#9a9aa0;
+  --chrome-3:#4b4b50;
+  --chrome-4:#1c1c1f;
+  --glow:#cfd8e3;
+  --glow-soft: rgba(207,216,227,0.35);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body{
+  margin: 0;
+  min-height: 100%;
+}
+
+body{
+  background-color: #000;
+  background-image: url("fond-site-ADB.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  font-family: 'Rajdhani', sans-serif;
+  width: 1450px;
+  height: 1450px;
+}
+
+html{
+  background-color: #000; /* évite le flash blanc au chargement / changement de page */
+}
+
+/* ---------- HEADER : logo à gauche, accueil + catalogue + ma liste + recherche groupés à droite ---------- */
+.site-header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px 40px;
+  flex-wrap: nowrap;
+}
+
+.site-header-right{
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: nowrap;
+}
+
+.site-header .logo{
+  flex: 0 0 auto;
+}
+
+.site-header .logo img{
+  display: block;
+  width: 64px;
+  height: 64px;
+  border-radius: 100px;
+  object-fit: contain;
+  background: #000;
+}
+
+@media (max-width: 700px){
+  .site-header{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+  }
+  .site-header-right{
+    width: 100%;
+  }
+  .adb-search.is-open{
+    width: 100%;
+  }
+}
+
+/* ---------- BOUTONS RONDS (Accueil / Catalogue / Ma liste) ---------- */
+.adb-icon-btn{
+  flex: 0 0 56px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid var(--chrome-2);
+  background: linear-gradient(180deg, #1a1a1d, #000 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  text-decoration: none;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 2px 14px rgba(0,0,0,0.8);
+  transition: box-shadow .4s ease, border-color .4s ease;
+}
+
+.adb-icon-btn:hover,
+.adb-icon-btn:focus-visible{
+  border-color: var(--chrome-1);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.06) inset,
+    0 4px 24px rgba(0,0,0,0.9),
+    0 0 18px 1px var(--glow-soft);
+}
+
+.adb-icon-btn:focus-visible{
+  outline: 2px solid var(--chrome-1);
+  outline-offset: 3px;
+}
+
+/* anneau toujours visible, pas seulement au survol */
+.adb-icon-ring{
+  filter: drop-shadow(0 0 1.5px rgba(207,216,227,0.45));
+}
+.adb-icon-btn:hover .adb-icon-ring{
+  filter: drop-shadow(0 0 4px var(--glow));
+}
+
+.adb-icon-btn .adb-icon-glyph{
+  position: relative;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  /* taille fixe : pas d'agrandissement au survol/clic */
+}
+
+.adb-icon-glyph svg{
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.adb-icon-glyph .adb-stroke{
+  fill:none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  /* glow permanent léger pour que le trait se détache du fond noir */
+  filter: drop-shadow(0 0 1.5px rgba(233,233,236,0.55));
+  transition: filter .4s ease;
+}
+.adb-icon-btn:hover .adb-icon-glyph .adb-stroke{
+  filter: drop-shadow(0 0 4px var(--glow));
+}
+
+.adb-home .adb-stroke{ stroke: url(#adbChromeStrokeHome); }
+.adb-catalogue .adb-stroke{ stroke: url(#adbChromeStrokeCatalogue); }
+.adb-liste .adb-stroke{ stroke: url(#adbChromeStrokeListe); }
+
+/* ---------- CONTENU GÉNÉRIQUE DE PAGE ---------- */
+.catalogue-content{
+  padding: 20px 40px 60px;
+  color: var(--chrome-1);
+  font-family: 'Rajdhani', sans-serif;
+}
+.catalogue-content h1{
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--chrome-1);
+  border-bottom: 1px solid var(--chrome-3);
+  padding-bottom: 12px;
+}
+.catalogue-content p{
+  color: var(--chrome-2);
+}
+
+/* ---------- BOUTON DE RECHERCHE ---------- */
+.adb-search{
+  position:relative;
+  display:flex;
+  align-items:center;
+  height:56px;
+  border-radius:999px;
+  background: linear-gradient(180deg, var(--gunmetal), #000 70%);
+  border: 1px solid var(--chrome-3);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.02) inset,
+    0 2px 14px rgba(0,0,0,0.8);
+  transition: width .5s cubic-bezier(.2,.9,.25,1), box-shadow .4s ease, border-color .4s ease;
+  width:56px;
+  flex-shrink: 0;
+}
+
+.adb-search.is-open{
+  width:340px;
+  border-color: var(--chrome-1);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 4px 24px rgba(0,0,0,0.9),
+    0 0 18px 1px var(--glow-soft);
+}
+
+.adb-search::before{
+  content:"";
+  position:absolute;
+  inset:-1px;
+  border-radius:999px;
+  padding:1px;
+  background: conic-gradient(from 0deg,
+    transparent 0deg,
+    var(--glow) 8deg,
+    transparent 20deg,
+    transparent 360deg);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity:0;
+  transition: opacity .3s ease;
+  animation: adb-trace 3.2s linear infinite;
+  pointer-events:none;
+}
+.adb-search:hover::before,
+.adb-search.is-open::before{
+  opacity:1;
+}
+@keyframes adb-trace{
+  to{ transform: rotate(360deg); }
+}
+
+.adb-search-btn{
+  flex: 0 0 56px;
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  border:none;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  position:relative;
+  z-index:2;
+  padding:0;
+}
+
+.adb-search-btn:focus-visible{
+  outline: 2px solid var(--chrome-1);
+  outline-offset: 3px;
+}
+
+.adb-icon-ring{
+  position:absolute;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background: conic-gradient(from 220deg,
+    var(--chrome-4), var(--chrome-1) 18%, var(--chrome-3) 32%,
+    var(--chrome-4) 50%, var(--chrome-2) 68%, var(--chrome-4) 85%, var(--chrome-4));
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1.5px));
+          mask: radial-gradient(farthest-side, transparent calc(100% - 2px), #000 calc(100% - 1.5px));
+  transition: filter .4s ease;
+}
+.adb-search-btn:hover .adb-icon-ring,
+.adb-search.is-open .adb-icon-ring{
+  filter: drop-shadow(0 0 4px var(--glow));
+}
+
+.adb-glass{
+  position:relative;
+  z-index:2;
+  width:24px;
+  height:24px;
+  /* taille fixe : pas d'agrandissement au survol/clic */
+}
+
+.adb-glass svg{
+  width:100%;
+  height:100%;
+  display:block;
+  overflow:visible;
+}
+
+.adb-glass .adb-stroke{
+  fill:none;
+  stroke:url(#adbChromeStroke);
+  stroke-width:2.2;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+  filter: drop-shadow(0 0 1.5px rgba(233,233,236,0.55));
+  transition: filter .4s ease;
+}
+.adb-search-btn:hover .adb-stroke,
+.adb-search.is-open .adb-stroke{
+  filter: drop-shadow(0 0 4px var(--glow));
+}
+
+.adb-search-input{
+  flex:1;
+  height:100%;
+  min-width:0;
+  background:transparent;
+  border:none;
+  outline:none;
+  color: var(--chrome-1);
+  font-family:'Rajdhani', sans-serif;
+  font-weight:600;
+  font-size:16px;
+  letter-spacing:.04em;
+  padding-right:18px;
+  opacity:0;
+  transition: opacity .3s ease .15s;
+}
+.adb-search.is-open .adb-search-input{ opacity:1; }
+
+.adb-search-input::placeholder{
+  color:#6c6c72;
+  font-weight:500;
+  text-transform:uppercase;
+  font-size:13px;
+  letter-spacing:.18em;
+}
+
+/* ---------- RÉSULTATS DE RECHERCHE EN DIRECT ---------- */
+.adb-search-results{
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  width: 320px;
+  max-height: 360px;
+  overflow-y: auto;
+  background: linear-gradient(180deg, #141416, #000);
+  border: 1px solid var(--chrome-3);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.85);
+  display: none;
+  flex-direction: column;
+  padding: 8px;
+  gap: 4px;
+  z-index: 50;
+}
+.adb-search-results.is-visible{
+  display: flex;
+}
+
+.adb-search-result{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--chrome-1);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background .2s ease;
+}
+.adb-search-result:hover{
+  background: rgba(255,255,255,0.06);
+}
+.adb-search-result img{
+  width: 40px;
+  height: 56px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex: 0 0 auto;
+  border: 1px solid var(--chrome-3);
+}
+
+.adb-search-empty{
+  margin: 0;
+  padding: 14px 10px;
+  color: var(--chrome-2);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ============================================
+   VIGNETTE ACCUEIL — juste l'image, cliquable
+   ============================================ */
+.poster-grid{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 10px 40px 60px;
+}
+
+.poster-card{
+  display: block;
+  position: relative;
+  width: 150px;
+  text-decoration: none;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--chrome-3);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.7);
+  transition: border-color .3s ease, box-shadow .3s ease, transform .2s ease;
+}
+.poster-card:hover{
+  border-color: var(--chrome-1);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.85), 0 0 18px var(--glow-soft);
+  transform: translateY(-3px);
+}
+
+.poster-card img{
+  display: block;
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+}
+
+.poster-card-title{
+  display: block;
+  padding: 8px 10px;
+  background: linear-gradient(180deg, #1a1a1d, #000);
+  color: var(--chrome-1);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: .03em;
+}
+
+/* ============================================
+   FICHE (page d'accueil) — affiche + titre + description + boutons
+   ============================================ */
+.hero-card{
+  display: flex;
+  gap: 32px;
+  padding: 20px 40px 40px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.hero-card .poster-link{
+  flex: 0 0 auto;
+  display: block;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--chrome-3);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.hero-card .poster-link:hover{
+  border-color: var(--chrome-1);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.85), 0 0 24px var(--glow-soft);
+}
+.hero-card .poster-link img{
+  display: block;
+  width: 260px;
+  height: 360px;
+  object-fit: cover;
+}
+
+.hero-info{
+  flex: 1 1 380px;
+  min-width: 280px;
+  color: var(--chrome-1);
+}
+
+.hero-info h1{
+  margin: 4px 0 16px;
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  background: linear-gradient(180deg, #f2f2f4, #9a9aa0 45%, #cfcfd2 55%, #6b6b70);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-info p.description{
+  color: var(--chrome-2);
+  line-height: 1.6;
+  max-width: 65ch;
+  margin-bottom: 20px;
+}
+
+.tag-list{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+  list-style: none;
+  padding: 0;
+}
+.tag-list li{
+  padding: 6px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--chrome-3);
+  background: linear-gradient(180deg, #1a1a1d, #000 70%);
+  color: var(--chrome-2);
+  font-size: 13px;
+  letter-spacing: .04em;
+}
+
+.action-row{
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-watch, .btn-surprise{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: .04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: border-color .3s ease, box-shadow .3s ease, transform .15s ease;
+}
+
+.btn-watch{
+  background: linear-gradient(180deg, var(--chrome-1), var(--chrome-2));
+  color: #000;
+  border: 1px solid var(--chrome-1);
+}
+.btn-watch:hover{
+  box-shadow: 0 0 18px var(--glow-soft);
+}
+
+.btn-surprise{
+  background: linear-gradient(180deg, #1a1a1d, #000 70%);
+  color: var(--chrome-1);
+  border: 1px solid var(--chrome-3);
+}
+.btn-surprise:hover{
+  border-color: var(--chrome-1);
+  box-shadow: 0 0 18px var(--glow-soft);
+}
+
+/* ============================================
+   CARROUSEL — derniers épisodes
+   ============================================ */
+.episode-section{
+  padding: 10px 40px 60px;
+}
+
+.episode-section h2{
+  color: var(--chrome-1);
+  font-size: 1.3rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+  border-bottom: 1px solid var(--chrome-3);
+  padding-bottom: 10px;
+}
+
+.episode-carousel{
+  display: flex;
+  gap: 18px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--chrome-3) transparent;
+}
+
+.episode-thumb-link{
+  flex: 0 0 220px;
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--chrome-3);
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+  /* reset des styles par défaut de <button> */
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  text-align: left;
+  transition: border-color .3s ease, box-shadow .3s ease, transform .2s ease;
+}
+.episode-thumb-link:hover{
+  border-color: var(--chrome-1);
+  box-shadow: 0 0 16px var(--glow-soft);
+  transform: translateY(-3px);
+}
+
+.episode-thumb-link.is-playing{
+  border-color: var(--chrome-1);
+  box-shadow: 0 0 18px var(--glow-soft);
+}
+.episode-thumb-link.is-playing .episode-thumb-meta strong::before{
+  content: "▶ ";
+}
+
+.episode-thumb-link img{
+  display: block;
+  width: 100%;
+  height: 124px;
+  object-fit: cover;
+}
+
+.episodes-heading{
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--chrome-1);
+  border-bottom: 1px solid var(--chrome-3);
+  padding-bottom: 10px;
+  margin: 28px 0 18px;
+}
+
+.episode-thumb-meta{
+  padding: 10px 12px;
+  background: linear-gradient(180deg, #1a1a1d, #000);
+  color: var(--chrome-2);
+  font-size: 13px;
+}
+.episode-thumb-meta strong{
+  display: block;
+  color: var(--chrome-1);
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+/* ============================================
+   PAGE DÉTAIL (ex: witch-hat-atelier.html)
+   ============================================ */
+.detail-page{
+  padding: 24px 40px 60px;
+  color: var(--chrome-1);
+}
+
+.back-link{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--chrome-2);
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: .04em;
+  margin-bottom: 24px;
+  transition: color .3s ease;
+}
+.back-link:hover{ color: var(--chrome-1); }
+
+.detail-layout{
+  display: flex;
+  gap: 36px;
+  flex-wrap: wrap;
+}
+
+.detail-poster{
+  flex: 0 0 auto;
+  width: 260px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--chrome-3);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+}
+.detail-poster img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.detail-body{
+  flex: 1 1 380px;
+  min-width: 280px;
+}
+
+.detail-body h1{
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  margin: 0 0 12px;
+  color: var(--chrome-1);
+}
+
+.detail-body p.description{
+  color: var(--chrome-2);
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.detail-actions{
+  display: flex;
+  gap: 14px;
+  margin-bottom: 32px;
+}
+
+.btn-like, .btn-addlist{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--chrome-3);
+  background: linear-gradient(180deg, #1a1a1d, #000 70%);
+  color: var(--chrome-1);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.btn-like:hover, .btn-addlist:hover{
+  border-color: var(--chrome-1);
+  box-shadow: 0 0 14px var(--glow-soft);
+}
+
+.btn-addlist.is-active{
+  background: linear-gradient(180deg, var(--chrome-1), var(--chrome-2));
+  color: #000;
+  border-color: var(--chrome-1);
+}
+
+.empty-list{
+  color: var(--chrome-2);
+}
+
+/* ============================================
+   FILTRES PAR THÈME (catalogue.html)
+   ============================================ */
+.theme-filters{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0 30px;
+}
+
+.theme-filter{
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--chrome-3);
+  background: linear-gradient(180deg, #1a1a1d, #000 70%);
+  color: var(--chrome-2);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: .03em;
+  cursor: pointer;
+  transition: border-color .3s ease, box-shadow .3s ease, color .3s ease;
+}
+.theme-filter:hover{
+  border-color: var(--chrome-1);
+  color: var(--chrome-1);
+}
+.theme-filter.is-active{
+  background: linear-gradient(180deg, var(--chrome-1), var(--chrome-2));
+  color: #000;
+  border-color: var(--chrome-1);
+}
+
+/* ============================================
+   LECTEUR VIDÉO PERSONNALISÉ
+   ============================================ */
+.adb-player{
+  position: relative;
+  width: 100%;
+  max-width: 960px;
+  background: #000;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--chrome-3);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.7);
+}
+
+.adb-player.is-hidden{
+  display: none;
+}
+
+.adb-player video{
+  display: block;
+  width: 100%;
+  max-height: 70vh;
+  background: #000;
+}
+
+.adb-player-controls{
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 16px;
+  background: linear-gradient(180deg, #141416, #000);
+  border-top: 1px solid var(--chrome-3);
+}
+
+.adb-player-btn{
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--chrome-3);
+  background: linear-gradient(180deg, #1a1a1d, #000 70%);
+  color: var(--chrome-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: border-color .3s ease, box-shadow .3s ease;
+}
+.adb-player-btn:hover{
+  border-color: var(--chrome-1);
+  box-shadow: 0 0 12px var(--glow-soft);
+}
+
+.adb-progress-wrap{
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--chrome-2);
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.adb-progress-bar{
+  flex: 1;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--chrome-4);
+  border: 1px solid var(--chrome-3);
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.adb-progress-fill{
+  position: absolute;
+  inset: 0;
+  width: 0%;
+  background: linear-gradient(90deg, var(--chrome-2), var(--chrome-1));
+  box-shadow: 0 0 8px var(--glow-soft);
+}
+
+.adb-time{
+  white-space: nowrap;
+  min-width: 92px;
+  text-align: center;
+}
+
+.episode-title-bar{
+  padding: 18px 0 14px;
+  color: var(--chrome-1);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  letter-spacing: .03em;
+}
+
+.detail-body h2{
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--chrome-1);
+  border-bottom: 1px solid var(--chrome-3);
+  padding-bottom: 10px;
+  margin-bottom: 18px;
+}
+
+.episode-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.episode-grid .episode-thumb-link{
+  flex: none;
+}
+
+
+/* ============================================
+   BOUTON "AJOUTER À LA LISTE" SUR LES VIGNETTES
+   ============================================ */
+.poster-card-addlist{
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 3;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--chrome-3);
+  background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(2px);
+  color: var(--chrome-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color .25s ease, box-shadow .25s ease, background .25s ease;
+}
+.poster-card-addlist:hover{
+  border-color: var(--chrome-1);
+  box-shadow: 0 0 10px var(--glow-soft);
+}
+.poster-card-addlist.is-active{
+  background: linear-gradient(180deg, var(--chrome-1), var(--chrome-2));
+  color: #000;
+  border-color: var(--chrome-1);
+}
+
+.poster-card-addlist-icon{
+  width: 14px;
+  height: 14px;
+  overflow: visible;
+}
+.poster-card-addlist-icon path{
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.1;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.poster-card-addlist.is-active .poster-card-addlist-icon path{
+  fill: currentColor;
+}
+/* Par défaut tous les groupes sont cachés */
+.saison-panel {
+    display: none;
+}
+
+/* Sauf celui qui a la classe is-active */
+.saison-panel.is-active {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+/* Les onglets de base */
+.saisons-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+.saison-tab {
+    padding: 8px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--chrome-3);
+    background: linear-gradient(180deg, #1a1a1d, #000 70%);
+    color: var(--chrome-2);
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    cursor: pointer;
+    transition: border-color .3s ease, color .3s ease;
+}
+
+/* L'onglet sélectionné devient argenté */
+.saison-tab.is-active {
+    background: linear-gradient(180deg, var(--chrome-1), var(--chrome-2));
+    color: #000;
+    border-color: var(--chrome-1);
+}

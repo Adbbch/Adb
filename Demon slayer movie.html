@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Adbland — Demon-slayer-movie</title>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+
+    <body>
+        <header class="site-header">
+            <div class="logo">
+                <img src="logo-ADB-cropped.png" alt="logo ADB" />
+            </div>
+
+            <div class="site-header-right">
+                <a href="index.html" class="adb-icon-btn" aria-label="Accueil">
+                    <span class="adb-icon-ring" aria-hidden="true"></span>
+                    <span class="adb-icon-glyph adb-home" aria-hidden="true">
+                        <svg viewBox="0 0 28 28">
+                            <defs>
+                                <linearGradient id="adbChromeStrokeHome" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f2f2f4" />
+                                    <stop offset="45%" stop-color="#9a9aa0" />
+                                    <stop offset="55%" stop-color="#cfcfd2" />
+                                    <stop offset="100%" stop-color="#6b6b70" />
+                                </linearGradient>
+                            </defs>
+                            <path class="adb-stroke" d="M4 14 L14 5 L24 14" />
+                            <path class="adb-stroke" d="M14 5 L14 1.6" stroke-width="1.4" />
+                            <path class="adb-stroke" d="M19.3 9.3 L21.8 6.8 M8.7 9.3 L6.2 6.8" stroke-width="1.4" />
+                            <path class="adb-stroke" d="M6.5 13 V23 H21.5 V13" />
+                            <path class="adb-stroke" d="M11.5 23 V17 H16.5 V23" />
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="catalogue.html" class="adb-icon-btn" aria-label="Catalogue">
+                    <span class="adb-icon-ring" aria-hidden="true"></span>
+                    <span class="adb-icon-glyph adb-catalogue" aria-hidden="true">
+                        <svg viewBox="0 0 28 28">
+                            <defs>
+                                <linearGradient id="adbChromeStrokeCatalogue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f2f2f4" />
+                                    <stop offset="45%" stop-color="#9a9aa0" />
+                                    <stop offset="55%" stop-color="#cfcfd2" />
+                                    <stop offset="100%" stop-color="#6b6b70" />
+                                </linearGradient>
+                            </defs>
+                            <path class="adb-stroke" d="M14 7 L4 9.5 V21 L14 18.5 L24 21 V9.5 L14 7 Z" />
+                            <path class="adb-stroke" d="M14 7 V18.5" />
+                            <path class="adb-stroke" d="M14 7 L14 3.6" stroke-width="1.4" />
+                            <path
+                                class="adb-stroke"
+                                d="M11 12.2 H7.3 M11 15.3 H7.3 M20.7 12.2 H17 M20.7 15.3 H17"
+                                stroke-width="1.4" />
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="liste.html" class="adb-icon-btn" aria-label="Ma liste">
+                    <span class="adb-icon-ring" aria-hidden="true"></span>
+                    <span class="adb-icon-glyph adb-liste" aria-hidden="true">
+                        <svg viewBox="0 0 28 28">
+                            <defs>
+                                <linearGradient id="adbChromeStrokeListe" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f2f2f4" />
+                                    <stop offset="45%" stop-color="#9a9aa0" />
+                                    <stop offset="55%" stop-color="#cfcfd2" />
+                                    <stop offset="100%" stop-color="#6b6b70" />
+                                </linearGradient>
+                            </defs>
+                            <path class="adb-stroke" d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z" />
+                            <path class="adb-stroke" d="M14 4.5 L14 1.6" stroke-width="1.4" />
+                            <path
+                                class="adb-stroke"
+                                d="M10.8 10 H17.2 M10.8 13.3 H17.2 M10.8 16.6 H15"
+                                stroke-width="1.4" />
+                        </svg>
+                    </span>
+                </a>
+
+                <form class="adb-search" id="adbSearch" role="search">
+                    <button
+                        type="button"
+                        class="adb-search-btn"
+                        id="adbToggle"
+                        aria-label="Ouvrir la recherche"
+                        aria-expanded="false">
+                        <span class="adb-icon-ring" aria-hidden="true"></span>
+                        <span class="adb-glass" aria-hidden="true">
+                            <svg viewBox="0 0 28 28">
+                                <defs>
+                                    <linearGradient id="adbChromeStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" stop-color="#f2f2f4" />
+                                        <stop offset="45%" stop-color="#9a9aa0" />
+                                        <stop offset="55%" stop-color="#cfcfd2" />
+                                        <stop offset="100%" stop-color="#6b6b70" />
+                                    </linearGradient>
+                                </defs>
+                                <circle class="adb-stroke" cx="11.5" cy="11.5" r="7.2" />
+                                <path
+                                    class="adb-stroke"
+                                    d="M16.7 16.7
+                                                     C 18.6 18.6, 20.4 20.3, 22.2 22.1
+                                                     C 23.1 23, 24.4 23.4, 25.3 22.6
+                                                     C 26.1 21.8, 25.8 20.5, 24.9 19.6
+                                                     C 23.1 17.8, 19.6 14.3, 17.5 12.3" />
+                                <path
+                                    class="adb-stroke"
+                                    d="M21.6 21.6 L24.6 24.6 M23.4 19.8 L25.9 19.0"
+                                    stroke-width="1.4" />
+                            </svg>
+                        </span>
+                    </button>
+
+                    <input
+                        class="adb-search-input"
+                        id="adbInput"
+                        type="text"
+                        name="q"
+                        placeholder="Rechercher…"
+                        autocomplete="off" />
+                </form>
+            </div>
+        </header>
+
+        <main class="detail-page">
+            <a href="index.html" class="back-link">&larr; Revenir</a>
+
+            <div class="detail-layout">
+                <div class="detail-poster">
+                    <img
+                        style="width: 320px; height: 485px; object-fit: cover"
+                        src="demon.jpg"
+                        alt="Witch Hat Atelier" />
+                </div>
+
+                <div class="detail-body">
+                    <h1>The eminence in shadow</h1>
+                    <p class="description">
+                      🚨OFFICIEL : LE FILM DEMON SLAYER « LA FORTERESSE INFINIE » dévoile un nouveau visuel, de Shinobu VS Doma ! 🦋🪭
+                    <div class="detail-actions">
+                        <button type="button" class="btn-like">👍 J'aime</button>
+                        <button type="button" class="btn-addlist">🔖 Ajouter à la liste</button>
+                    </div>
+
+                    <h2>Épisodes</h2>
+                    <div class="episode-grid">
+                        <a href="atelier%20(1).mkv" class="episode-thumb-link">
+                            <img src="demon.jpg" alt="Épisode 1" />
+                            <div class="episode-thumb-meta">
+                                <strong>Movie</strong>
+                                Il y a 2 heures
+                            </div>
+                        </a>
+                        
+                        <a href=""></a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        
+        <script src="adb-catalog.js"></script>
+        <script src="adb-search.js"></script>
+        <script src="adb-list.js"></script>
+    </body>
+</html>
