@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Adbland</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="logo">
+            <img src="logo-ADB-cropped.png" alt="logo ADB">
+        </div>
+
+        <div class="site-header-right">
+            <!-- ACCUEIL : pointe vers ta page d'accueil. Si ta home n'est pas index.html, change le href ici -->
+            <a href="index.html" class="adb-icon-btn" aria-label="Accueil">
+                <span class="adb-icon-ring" aria-hidden="true"></span>
+                <span class="adb-icon-glyph adb-home" aria-hidden="true">
+                    <svg viewBox="0 0 28 28">
+                        <defs>
+                            <linearGradient id="adbChromeStrokeHome" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f2f2f4"/>
+                                <stop offset="45%" stop-color="#9a9aa0"/>
+                                <stop offset="55%" stop-color="#cfcfd2"/>
+                                <stop offset="100%" stop-color="#6b6b70"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- toit pointu, écho au pic de la lettre A du logo -->
+                        <path class="adb-stroke" d="M4 14 L14 5 L24 14"/>
+                        <path class="adb-stroke" d="M14 5 L14 1.6" stroke-width="1.4"/>
+                        <!-- petites épines d'accent sur le toit -->
+                        <path class="adb-stroke" d="M19.3 9.3 L21.8 6.8 M8.7 9.3 L6.2 6.8" stroke-width="1.4"/>
+                        <!-- murs -->
+                        <path class="adb-stroke" d="M6.5 13 V23 H21.5 V13"/>
+                        <!-- porte -->
+                        <path class="adb-stroke" d="M11.5 23 V17 H16.5 V23"/>
+                    </svg>
+                </span>
+            </a>
+
+            <!-- CATALOGUE : pointe vers catalogue.html, même onglet (pas de target="_blank") -->
+            <a href="catalogue.html" class="adb-icon-btn" aria-label="catalogue">
+                <span class="adb-icon-ring" aria-hidden="true"></span>
+                <span class="adb-icon-glyph adb-catalogue" aria-hidden="true">
+                    <svg viewBox="0 0 28 28">
+                        <defs>
+                            <linearGradient id="adbChromeStrokeCatalogue" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f2f2f4"/>
+                                <stop offset="45%" stop-color="#9a9aa0"/>
+                                <stop offset="55%" stop-color="#cfcfd2"/>
+                                <stop offset="100%" stop-color="#6b6b70"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- livre ouvert, couverture en pointe comme le toit/A -->
+                        <path class="adb-stroke" d="M14 7 L4 9.5 V21 L14 18.5 L24 21 V9.5 L14 7 Z"/>
+                        <path class="adb-stroke" d="M14 7 V18.5"/>
+                        <!-- épine d'accent sur la reliure -->
+                        <path class="adb-stroke" d="M14 7 L14 3.6" stroke-width="1.4"/>
+                        <path class="adb-stroke" d="M11 12.2 H7.3 M11 15.3 H7.3 M20.7 12.2 H17 M20.7 15.3 H17" stroke-width="1.4"/>
+                    </svg>
+                </span>
+            </a>
+
+            <!-- MA LISTE : pointe vers liste.html -->
+            <a href="liste.html" class="adb-icon-btn" aria-label="Ma liste">
+                <span class="adb-icon-ring" aria-hidden="true"></span>
+                <span class="adb-icon-glyph adb-liste" aria-hidden="true">
+                    <svg viewBox="0 0 28 28">
+                        <defs>
+                            <linearGradient id="adbChromeStrokeListe" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#f2f2f4"/>
+                                <stop offset="45%" stop-color="#9a9aa0"/>
+                                <stop offset="55%" stop-color="#cfcfd2"/>
+                                <stop offset="100%" stop-color="#6b6b70"/>
+                            </linearGradient>
+                        </defs>
+                        <!-- parchemin/liste avec pointe en haut, écho au pic du logo -->
+                        <path class="adb-stroke" d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/>
+                        <path class="adb-stroke" d="M14 4.5 L14 1.6" stroke-width="1.4"/>
+                        <!-- lignes de la liste -->
+                        <path class="adb-stroke" d="M10.8 10 H17.2 M10.8 13.3 H17.2 M10.8 16.6 H15" stroke-width="1.4"/>
+                    </svg>
+                </span>
+            </a>
+
+            <form class="adb-search" id="adbSearch" role="search">
+                <button type="button" class="adb-search-btn" id="adbToggle" aria-label="Ouvrir la recherche" aria-expanded="false">
+                    <span class="adb-icon-ring" aria-hidden="true"></span>
+                    <span class="adb-glass" aria-hidden="true">
+                        <svg viewBox="0 0 28 28">
+                            <defs>
+                                <linearGradient id="adbChromeStroke" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="#f2f2f4"/>
+                                    <stop offset="45%" stop-color="#9a9aa0"/>
+                                    <stop offset="55%" stop-color="#cfcfd2"/>
+                                    <stop offset="100%" stop-color="#6b6b70"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- lentille -->
+                            <circle class="adb-stroke" cx="11.5" cy="11.5" r="7.2"/>
+                            <!-- poignée en forme de griffe, écho aux pointes du logo -->
+                            <path class="adb-stroke" d="M16.7 16.7
+                                                     C 18.6 18.6, 20.4 20.3, 22.2 22.1
+                                                     C 23.1 23, 24.4 23.4, 25.3 22.6
+                                                     C 26.1 21.8, 25.8 20.5, 24.9 19.6
+                                                     C 23.1 17.8, 19.6 14.3, 17.5 12.3"/>
+                            <!-- petite épine d'accent -->
+                            <path class="adb-stroke" d="M21.6 21.6 L24.6 24.6 M23.4 19.8 L25.9 19.0" stroke-width="1.4"/>
+                        </svg>
+                    </span>
+                </button>
+
+                <input
+                    class="adb-search-input"
+                    id="adbInput"
+                    type="text"
+                    name="q"
+                    placeholder="Rechercher…"
+                    autocomplete="off"
+                />
+            </form>
+        </div>
+    </header>
+
+    <!-- VIGNETTE : juste l'image, cliquable vers la fiche complète -->
+  <main  class="catalogue-content">
+        <h1 >dernier a jour</h1>
+    
+    </main>
+    
+    <section class="poster-grid">
+    <a href="witch-hat-atelier.html" class="poster-card theme-aventure theme-fantaisie"><button type="button" class="poster-card-addlist" data-title="Witch Hat Atelier" data-poster="wicht.jpg" data-href="witch-hat-atelier.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button>
+        <img src="wicht.jpg" alt="Witch Hat Atelier">
+        <span class="poster-card-title">Witch Hat Atelier</span>
+    </a>
+
+    <a href="Cheat-skill-level-up.html" class="poster-card theme-isekai theme-action"><button type="button" class="poster-card-addlist" data-title="Cheat skill level up" data-poster="isekai.jpg" data-href="Cheat-skill-level-up.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button>
+        <img src="isekai.jpg" alt="Cheat skill level up">
+        <span class="poster-card-title">Cheat skill level up</span>
+    </a>
+        <a href="solo%20leveling.html" class="poster-card theme-action theme-fantaisie"><button type="button" class="poster-card-addlist" data-title="solo leveling" data-poster="sl.jpg" data-href="solo%20leveling.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button> <img src="sl.jpg" alt="solo-leveling"> 
+            <span class="poster-card-title">solo leveling</span>
+        </a>
+        <a href="Demon%20slayer%20movie.html" class="poster-card theme-action theme-aventure"><button type="button" class="poster-card-addlist" data-title="Demon slayer-movie" data-poster="demon.jpg" data-href="Demon%20slayer%20movie.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button> <img src="demon.jpg" alt=""> <span class="poster-card-title"> Demon slayer-movie</span></a>
+        
+       
+</section>
+   
+    <main class="catalogue-content">
+        <h1>Les plus populaires</h1>
+        
+    </main>
+    
+    <section class="poster-grid">
+        
+        <a href="the%20eminence%20shadow.html" class="poster-card theme-isekai theme-comedie"><button type="button" class="poster-card-addlist" data-title="the emininence in shadow" data-poster="shadow.jpg" data-href="the%20eminence%20shadow.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button> <img src="shadow.jpg" alt="the eminence in shadow"> 
+            <span class="poster-card-title">the emininence in shadow</span>
+        </a>
+        
+        <a href="my%20hero%20academia.html" class="poster-card theme-action theme-shonen"><button type="button" class="poster-card-addlist" data-title="My Hero Academia" data-poster="mha.jpg" data-href="my%20hero%20academia.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button> <img src="mha.jpg" alt="my hero academia">
+         <span class="poster-card-title">My Hero Academia</span>
+        </a>
+        <a href="wind%20breaker.html" class="poster-card theme-action theme-shonen"><button type="button" class="poster-card-addlist" data-title="wind breaker" data-poster="wind.jpg" data-href="wind%20breaker.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button> <img src="wind.jpg" alt=""> <span class="poster-card-title"> wind breaker</span></a>
+        
+    
+    </section>
+    
+    <main class="catalogue-content">
+    <h1>Cette saison</h1>
+    
+    </main>
+    
+    <section class="poster-grid">
+        <a href="MQJMS.html" class="poster-card theme-isekai theme-fantaisie"><button type="button" class="poster-card-addlist" data-title="Moi quand je me reincarne en slime" data-poster="mqrs.jpg" data-href="MQJMS.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button> <img src="mqrs.jpg" alt=""> <span class="poster-card-title">Moi quand je me reincarne en slime
+            </span></a>
+        <a href="Wistoria.html" class="poster-card theme-isekai theme-aventure"><button type="button" class="poster-card-addlist" data-title="Wistoria" data-poster="wistoria.jpg" data-href="Wistoria.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button> <img src="wistoria.jpg" alt=""><span class="poster-card-title"> Wistoria</span></a>
+        <a href="classroom%20of%20elite.html" class="poster-card theme-drame theme-shonen"><button type="button" class="poster-card-addlist" data-title="classroom of elite" data-poster="classroom.jpg" data-href="classroom%20of%20elite.html" aria-label="Ajouter à la liste"><svg viewBox="0 0 28 28" class="poster-card-addlist-icon"><path d="M8 4.5 H20 V22.5 L14 19.5 L8 22.5 Z"/><path d="M14 4.5 L14 1.6" stroke-width="1.4"/></svg></button> <img src="classroom.jpg" alt=""> <span class="poster-card-title">classroom of elite</span></a>
+        
+    
+    </section>
+
+    <script src="adb-catalog.js"></script>
+    <script src="adb-search.js"></script>
+    <script src="adb-list.js"></script>
+</body>
+</html>
