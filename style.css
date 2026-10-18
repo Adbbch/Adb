@@ -1117,3 +1117,98 @@ img, video, iframe {
     padding-right: 24px;
   }
 }
+
+/* AMELIORATION MOBILE : affiches et textes plus lisibles sur téléphone */
+@media (max-width: 700px) {
+  body {
+    font-size: 17px;
+  }
+
+  .site-header {
+    padding: 18px 14px;
+  }
+
+  .site-header .logo img {
+    width: 58px;
+    height: 58px;
+  }
+
+  .catalogue-content {
+    padding: 18px 14px 24px;
+  }
+
+  .catalogue-content h1 {
+    font-size: clamp(1.5rem, 6vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .poster-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+    padding: 10px 12px 36px;
+  }
+
+  .poster-card {
+    border-radius: 9px;
+  }
+
+  .poster-card img {
+    width: 100%;
+    aspect-ratio: 5 / 7;
+    height: auto;
+  }
+
+  .poster-card-title {
+    font-size: clamp(14px, 3.8vw, 17px);
+    line-height: 1.3;
+    padding: 10px 8px;
+    letter-spacing: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-info h1,
+  .detail-body h1 {
+    font-size: clamp(1.6rem, 7vw, 2.2rem);
+    line-height: 1.2;
+  }
+
+  .hero-info,
+  .detail-body,
+  .detail-body p,
+  .hero-info p.description {
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .detail-actions a,
+  .detail-actions button,
+  .saison-tab {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .episode-grid,
+  .saison-panel.is-active {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 380px) {
+  .poster-grid {
+    gap: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .poster-card-title {
+    font-size: 14px;
+    padding: 9px 6px;
+  }
+
+  .adb-icon-btn,
+  .adb-search-btn {
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
+  }
+}
