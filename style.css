@@ -32,8 +32,8 @@ body{
   background-position: center;
   background-attachment: fixed;
   font-family: 'Rajdhani', sans-serif;
-  width: 1450px;
-  height: 1450px;
+  width: 100%;
+  min-height: 100vh;
 }
 
 html{
@@ -959,4 +959,161 @@ html{
     background: linear-gradient(180deg, var(--chrome-1), var(--chrome-2));
     color: #000;
     border-color: var(--chrome-1);
+}
+
+/* ============================================
+   ADAPTATION AUTOMATIQUE : PC, tablette et mobile
+   ============================================ */
+
+/* Les éléments ne doivent jamais dépasser la largeur de l'écran */
+html {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+  background-attachment: scroll;
+}
+
+/* Les images et lecteurs restent dans leur conteneur */
+img, video, iframe {
+  max-width: 100%;
+}
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(150px, 42vw), 1fr));
+  gap: 24px;
+}
+
+.poster-card {
+  width: 100%;
+  min-width: 0;
+}
+
+.poster-card img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 7;
+  object-fit: cover;
+}
+
+@media (max-width: 700px) {
+  .site-header {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .site-header-right {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .catalogue-content {
+    padding: 16px 16px 30px;
+  }
+
+  .poster-grid,
+  .episode-section,
+  .detail-page {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .poster-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .hero-card {
+    padding: 16px;
+    gap: 20px;
+  }
+
+  .hero-card .poster-link img {
+    width: min(260px, 80vw);
+    height: auto;
+    aspect-ratio: 13 / 18;
+    object-fit: cover;
+  }
+
+  .detail-layout {
+    gap: 20px;
+  }
+
+  .detail-poster {
+    width: min(260px, 80vw);
+  }
+
+  .detail-body,
+  .hero-info {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .detail-actions {
+    flex-wrap: wrap;
+  }
+
+  .adb-search.is-open {
+    max-width: 100%;
+    width: min(340px, calc(100vw - 32px));
+  }
+
+  .adb-search-results {
+    width: min(320px, calc(100vw - 32px));
+  }
+
+  .episode-grid,
+  .saison-panel.is-active {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 380px) {
+  .adb-icon-btn,
+  .adb-search,
+  .adb-search-btn {
+    flex-shrink: 0;
+  }
+
+  .site-header-right {
+    gap: 8px;
+  }
+
+  .adb-icon-btn,
+  .adb-search,
+  .adb-search-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .adb-icon-btn,
+  .adb-search-btn {
+    flex-basis: 48px;
+  }
+
+  .adb-icon-ring {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (min-width: 701px) and (max-width: 1024px) {
+  .site-header {
+    padding-left: 24px;
+    padding-right: 24px;
+    gap: 16px;
+  }
+
+  .site-header-right {
+    gap: 10px;
+  }
+
+  .poster-grid {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
 }
