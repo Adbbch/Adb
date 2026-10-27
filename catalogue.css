@@ -1,0 +1,32 @@
+.anime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
+  gap: 16px;
+}
+.anime-card {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #171522;
+  color: #fff;
+}
+.anime-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.anime-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+.anime-card h3 {
+  margin: 10px 10px 6px;
+  font-size: 0.95rem;
+}
+.anime-card p {
+  margin: 0 10px 12px;
+  color: #c7c3d8;
+  font-size: 0.8rem;
+}
