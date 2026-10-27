@@ -1,0 +1,36 @@
+name: Update anime catalogue
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update-catalogue:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Fetch anime metadata
+        run: python scripts/update_anime.py
+
+      - name: Commit catalogue if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/anime.json
+          if git diff --cached --quiet; then
+            echo "No catalogue changes."
+          else
+            git commit -m "Update anime catalogue"
+            git push
+          fi
